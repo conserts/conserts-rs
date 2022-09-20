@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+
+SPDX-License-Identifier: MIT
+-->
+<allInOne:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:allInOne="allInOnePkg" globalId="80" name="LeaderTruck" description="">
+  <configurations globalId="81" name="LeaderTruck_Config_CACC" description="" configurationRanking="1">
+    <conSert globalId="82" name="LeaderTruck_ConSert_CACC" description="">
+      <guarantees globalId="83" name="G_CurrentLeaderSpeedProvision_1" description="">
+        <integrityLevel globalId="84" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="85" name="" description="">
+          <refinement globalId="86" name="&lt;= 1km/h is detected within 150 ms and service omitted" description=""/>
+          <safetyPropertyType globalId="87" name="TooHigh" description=""/>
+          <integrityLevel globalId="88" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="89" name="G_CurrentLeaderSpeedProvision_2" description="">
+        <integrityLevel globalId="90" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="91" name="" description="">
+          <refinement globalId="92" name="&lt;= 2km/h is detected within 150 ms and service omitted" description=""/>
+          <safetyPropertyType globalId="93" name="TooHigh" description=""/>
+          <integrityLevel globalId="94" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="95" name="G_LeaderEmergencyBrakeStateProvision_1" description="">
+        <integrityLevel globalId="96" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="97" name="" description="">
+          <refinement globalId="98" name="Delay &lt;= 50 ms" description=""/>
+          <safetyPropertyType globalId="99" name="TooLate" description=""/>
+          <integrityLevel globalId="100" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="101" name="G_LeaderEmergencyBrakeStateProvision_2" description="">
+        <integrityLevel globalId="102" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="103" name="" description="">
+          <refinement globalId="104" name="Delay &lt;= 100 ms" description=""/>
+          <safetyPropertyType globalId="105" name="TooLate" description=""/>
+          <integrityLevel globalId="106" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <runtimeEvidence globalId="107" name="RtE1" description="Wifi Module is healthy: ASIL D" />
+      <runtimeEvidence globalId="108" name="RtE2" description="LeaderSpeed Provision implemented according to spec: ASIL D" />
+      <runtimeEvidence globalId="109" name="RtE3" description="Vehicle Speed >= 20 km/h: ASIL D"  />
+      <runtimeEvidence globalId="110" name="RtE4" description="Wheel speed sensors healthy == 4: ASIL D"  />
+      <runtimeEvidence globalId="111" name="RtE5" description="Vehicle Speed &lt; 20 km/h: ASIL D"  />
+      <runtimeEvidence globalId="112" name="RtE6" description="Wheel speed sensors erroneous >= 1: ASIL D"  />
+      <runtimeEvidence globalId="113" name="RtE7" description="LeaderEmergerncyBrakeState Provision implemented according to spec: ASIL D"  />
+      <runtimeEvidence globalId="114" name="RtE8" description="MasterCylinder Brake Pressure Monitoring is healthy: ASIL D"  />
+      <runtimeEvidence globalId="115" name="RtE9" description="Brakepedal Gradient Monitoring is healthy: ASIL D" />
+      <invariant globalId="116"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.0" targetElement="//@configurations.0/@conSert/@invariant" />
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.0" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.6" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.1" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.1" targetElement="//@configurations.0/@conSert/@guarantees.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.2" targetElement="//@configurations.0/@conSert/@gates.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.3" targetElement="//@configurations.0/@conSert/@gates.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.4" targetElement="//@configurations.0/@conSert/@guarantees.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.5" targetElement="//@configurations.0/@conSert/@gates.4"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.2" targetElement="//@configurations.0/@conSert/@gates.4"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.3" targetElement="//@configurations.0/@conSert/@gates.2"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.4" targetElement="//@configurations.0/@conSert/@gates.2"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.3" targetElement="//@configurations.0/@conSert/@guarantees.2"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.7" targetElement="//@configurations.0/@conSert/@gates.3"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.8" targetElement="//@configurations.0/@conSert/@gates.3"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.8" targetElement="//@configurations.0/@conSert/@guarantees.3"/>
+      <gates globalId="117" name="And_1" description="" gateType="AND"/>
+      <gates globalId="118" name="And_2" description="" gateType="AND"/>
+      <gates globalId="119" name="And_3" description="" gateType="AND" />
+      <gates globalId="120" name="And_4" description="" gateType="AND" />
+      <gates globalId="121" name="Or_1" description="" gateType="OR"/>
+    </conSert>
+    <providedServices globalId="122" name="Current Leader SpeedProvision" description="" guarantees="//@configurations.0/@conSert/@guarantees.0 //@configurations.0/@conSert/@guarantees.1">
+      <functionalServiceType globalId="123" name="SpeedProvision" description=""/>
+    </providedServices>
+    <providedServices globalId="124" name="Leader Emergency Brake State Provision" description="" guarantees="//@configurations.0/@conSert/@guarantees.2 //@configurations.0/@conSert/@guarantees.3">
+      <functionalServiceType globalId="125" name="EmergencyBrakeStateProvision" description=""/>
+    </providedServices>
+  </configurations>
+</allInOne:System>

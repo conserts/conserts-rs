@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+# SPDX-License-Identifier: CC0-1.0
+
+cobertura.xml
+license.html
+target/

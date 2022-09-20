@@ -1,0 +1,119 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+---
+guarantees:
+  - id: UnoccupiedLong
+    dimensions:
+      - Numeric:
+          type: UnoccupiedTime
+          covered:
+            - Inclusive:
+                start: 0.0
+                end: 2.0
+          subset: Demand
+          uom: second
+      - Categorical:
+          type: PL
+          covered: ["PL d"]
+          subset: Demand
+      - Categorical:
+          type: SIL
+          covered: ["SIL 2"]
+          subset: Demand
+  - id: UnoccupiedMedium
+    dimensions:
+      - Numeric:
+          type: UnoccupiedTime
+          covered:
+            - Inclusive:
+                start: 0.0
+                end: 1.5
+          subset: Demand
+          uom: second
+      - Categorical:
+          type: PL
+          covered: ["PL d"]
+          subset: Demand
+      - Categorical:
+          type: SIL
+          covered: ["SIL 2"]
+          subset: Demand
+  - id: UnoccupiedShort
+    dimensions:
+      - Numeric:
+          type: UnoccupiedTime
+          covered:
+            - Inclusive:
+                start: 0.0
+                end: 0.5
+          subset: Demand
+          uom: second
+      - Categorical:
+          type: PL
+          covered: ["PL d"]
+          subset: Demand
+      - Categorical:
+          type: SIL
+          covered: ["SIL 2"]
+          subset: Demand
+evidence:
+  - id: InstallationApproved
+    description: "Installation Approved w.r.t. ISO 13855"
+    dimension:
+      Binary:
+        type: InstallationApproved
+  - id: SingleEvaluation
+    description: Multi Evaluation = 1
+    dimension:
+      Binary:
+        type: MultiEvaluation
+  - id: MultiEvaluation4
+    description: Multi Evaluation = 4
+    dimension:
+      Binary:
+        type: MultiEvaluation
+  - id: S1_Unoccupied
+    description: Zone S1 Unoccupied
+    dimension:
+      Binary:
+        type: S1_Unoccupied
+  - id: S2_Unoccupied
+    description: Zone S2 Unoccupied
+    dimension:
+      Binary:
+        type: S2_Unoccupied
+demands: []
+gates:
+  - id: Gate0
+    function: And
+tree_propagations:
+  - from: SingleEvaluation
+    to: Gate0
+  - from: InstallationApproved
+    to: Gate0
+  - from: S1_Unoccupied
+    to: Gate0
+  - from: Gate0
+    to: UnoccupiedLong
+  - from: Gate0
+    to: UnoccupiedMedium
+  - from: MultiEvaluation4
+    to: UnoccupiedShort
+  - from: InstallationApproved
+    to: UnoccupiedShort
+  - from: S1_Unoccupied
+    to: UnoccupiedShort
+  - from: S2_Unoccupied
+    to: UnoccupiedLong
+  - from: S2_Unoccupied
+    to: UnoccupiedShort
+required_services: []
+provided_services:
+  - id: OccupationService
+    functional_service_type: Occupation
+    guarantees:
+      - UnoccupiedLong
+      - UnoccupiedMedium
+      - UnoccupiedShort

@@ -1,0 +1,83 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+---
+guarantees:
+  - id: G_Distance
+    description: Distance is kept
+    dimensions:
+      - Numeric:
+          type: DistanceIsKept
+          covered:
+            - Inclusive:
+                start: 0.0
+                end: 5.0
+          subset: Demand
+          uom: millimeter
+  - id: G_Approved
+    description: Installation Approved
+    dimensions:
+      - Binary:
+          type: InstallationApproved
+evidence:
+  - id: E_DistanceBound
+    description: Distance <= 50m
+    dimension:
+      Numeric:
+        type: Distance
+        covered:
+          - Inclusive:
+              start: 0.0
+              end: 50.0
+        subset: Guarantee
+        uom: meter
+  - id: E_Approved
+    description: HSE Approved Setup
+    dimension:
+      Binary:
+        type: HSEApprovedSetup
+  - id: Force
+    dimension:
+      Numeric:
+        type: Force
+        covered:
+          - Inclusive:
+              start: 0.0
+              end: 1.0
+        subset: Demand
+        uom: newton
+demands:
+  - id: Latency
+    description: Transmission Latency <= 5ms
+    dimensions:
+      - Numeric:
+          type: TransmissionLatency
+          covered:
+            - Inclusive:
+                start: 0.0
+                end: 5.0
+          subset: Guarantee
+          uom: millisecond
+gates: []
+tree_propagations:
+  - from: E_DistanceBound
+    to: G_Distance
+  - from: E_Approved
+    to: G_Distance
+  - from: Latency
+    to: G_Distance
+  - from: E_Approved
+    to: G_Approved
+  - from: Force
+    to: G_Distance
+required_services:
+  - id: LatencyService
+    functional_service_type: Latency
+    demands:
+      - Latency
+provided_services:
+  - id: DistanceService
+    functional_service_type: Distance
+    guarantees:
+      - G_Distance

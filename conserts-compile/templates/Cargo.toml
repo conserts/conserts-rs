@@ -1,0 +1,12 @@
+[package]
+name = "{{name}}"
+version = "0.1.0-{{checksum}}"
+authors = ["ConSert <consert@iese.fraunhofer.de>"]
+edition = "2018"
+autobins = false
+[dependencies]
+heapless = "0.7.4"
+[dependencies.uom]
+version = "0.31.0"
+default-features = false
+features = ["f64", "si"]

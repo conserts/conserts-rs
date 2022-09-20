@@ -1,0 +1,7 @@
+digraph consert_Test { rankdir = BT; node [fontsize=16 shape=box fontname="Verdana"];
+    Demand[label="<Demand>\n\nFirst Demand\n\nLength : meter\n0.0..=5.0 (D <= G)"];
+    Gate1[label="<Gate>\n&"];
+    RtE[label="<Evidence>\n\nRtE\n\nType"];
+    Gate1 -> G1[label=""];
+    RtE -> Gate1[label=""];{rank=same;
+    G1[label="<Guarantee>\n\nG1\n\nType"];}{rank=same;}}

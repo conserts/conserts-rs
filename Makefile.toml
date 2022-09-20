@@ -1,0 +1,73 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = true
+
+[tasks.verify]
+description = "Format, lint with Clippy and run tests"
+dependencies = ["fmt", "clippy", "clippy-prod", "test"]
+
+# ---- LINT ----
+
+[tasks.clippy]
+description = "Lint with Clippy"
+install_crate = { rustup_component_name = "clippy", binary = "cargo-clippy", test_arg = "--help" }
+command = "cargo"
+args = ["clippy", "--all-features", "--all-targets", "--", "--deny", "warnings"]
+
+[tasks.clippy-prod]
+description = "Lint with Clippy (no tests)"
+install_crate = { rustup_component_name = "clippy", binary = "cargo-clippy", test_arg = "--help" }
+command = "cargo"
+args = ["clippy", "--all-features", "--", "--deny", "warnings", "-D", "clippy::expect_used", "-D", "clippy::panic", "-D", "clippy::unwrap_used"]
+
+[tasks.fmt]
+description = "Format with rustfmt"
+command = "cargo"
+args = ["fmt"]
+
+# ---- TEST ----
+[tasks.coverage]
+description = "Run tests and measures coverage."
+install_crate = { crate_name = "cargo-tarpaulin", binary = "cargo-tarpaulin", test_arg = "-V" }
+command = "cargo"
+args = ["tarpaulin", "--verbose", "--all-features", "--ignore-tests", "--workspace", "--timeout", "120", "--out Xml"]
+
+# ---- USAGE ----
+
+[tasks.parse]
+script = [
+'''
+cargo run -- parse -i models/DEIS_DemoFollowerTruckSystem.model
+'''
+]
+
+[tasks.compile]
+script = [
+'''
+cargo run -p conserts -- compile -i ../models/DEIS_DemoFollowerTruckSystem.model
+'''
+]
+
+[tasks.compile-test]
+script = [
+'''
+cargo run -p conserts -- compile -i ../models/DEIS_DemoFollowerTruckSystem.model && cd target/consert_deis_demofollowertrucksystem && cargo check
+'''
+]
+
+[tasks.compose]
+script = [
+'''
+cargo run -p conserts -- compose -i ../models/DEIS_DemoLeaderTruckSystem.model -i ../models/DEIS_DemoFollowerTruckSystem.model
+'''
+]
+
+[tasks.compose-fail]
+script = [
+'''
+cargo run -p conserts -- compose -i ../models/DEIS_DemoLeaderTruckSystemIncompatible.model -i ../models/DEIS_DemoFollowerTruckSystem.model
+'''
+]

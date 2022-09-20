@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+[workspace]
+members = [
+    "conserts-cli",
+    "conserts-compile",
+    "conserts-compose",
+    "conserts-error",
+    "conserts-elements",
+    "conserts-parse",
+    "conserts-plot",
+    "conserts",
+]
+exclude = [
+    "target/"
+]

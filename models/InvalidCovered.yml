@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+---
+guarantees: []
+evidence:
+  - id: E_DistanceBound
+    description: Distance <= 50m
+    dimension:
+      Numeric:
+        type: Distance
+        covered: []
+        subset: Guarantee
+        uom: meter
+demands: []
+gates: []
+tree_propagations: []
+required_services: []
+provided_services: []

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+
+SPDX-License-Identifier: MIT
+-->
+<allInOne:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allInOne="allInOnePkg" xsi:schemaLocation="allInOnePkg ../metamodel/allInOneMetaModel.ecore" globalId="42" name="LeaderTruck" description="">
+  <configurations globalId="43" name="LeaderTruck_Config_CACC" description="" configurationRanking="1">
+    <conSert globalId="44" name="LeaderTruck_ConSert_CACC" description="">
+      <guarantees globalId="45" name="SG4" description="">
+        <integrityLevel globalId="46" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="47" name="" description="">
+          <refinement globalId="48" name="Speed Deviation is bound to &lt;= 5 km/h" description=""/>
+          <safetyPropertyType globalId="49" name="TooHigh" description=""/>
+          <integrityLevel globalId="50" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="51" name="SG5" description="">
+        <integrityLevel globalId="52" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="53" name="" description="">
+          <refinement globalId="54" name="Speed Deviation is bound to &lt;= 3 km/h" description=""/>
+          <safetyPropertyType globalId="55" name="TooHigh" description=""/>
+          <integrityLevel globalId="56" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="57" name="SG6" description="">
+        <integrityLevel globalId="58" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="59" name="" description="">
+          <refinement globalId="60" name="No Safe Speed Provision" description=""/>
+          <safetyPropertyType globalId="61" name="TooHigh" description=""/>
+          <integrityLevel globalId="62" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <runtimeEvidence globalId="63" name="RtE3" description="Speed Measurement over ESP wheel speeds healthy."/>
+      <runtimeEvidence globalId="64" name="RtE3" description="Model-based speed computation over engine speed healthy."/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.0" targetElement="//@configurations.0/@conSert/@guarantees.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.0" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.1" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.1" targetElement="//@configurations.0/@conSert/@guarantees.1"/>
+      <gates globalId="65" name="And_1" description="" gateType="AND"/>
+    </conSert>
+    <providedServices globalId="66" name="Speed Provision" description="" guarantees="//@configurations.0/@conSert/@guarantees.0 //@configurations.0/@conSert/@guarantees.1 //@configurations.0/@conSert/@guarantees.2">
+      <functionalServiceType globalId="67" name="SpeedProvision" description=""/>
+    </providedServices>
+  </configurations>
+</allInOne:System>

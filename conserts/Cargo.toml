@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+[package]
+name = "conserts"
+version = "0.1.6"
+authors = ["Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"]
+edition = "2018"
+
+[dependencies]
+color-eyre = { version = "0.5.11", default-features = false }
+pretty_env_logger = "0.4.0"
+
+conserts-cli = { path = "../conserts-cli" }
+
+[features]
+default = ["conserts-cli/default"]
+explorer = ["conserts-cli/explorer"]

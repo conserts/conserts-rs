@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+[package]
+name = "conserts-parse"
+version = "0.1.6"
+authors = ["Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"]
+edition = "2018"
+
+[lib]
+path = "src/parse.rs"
+
+[dependencies]
+askama = "0.11.0"
+Inflector = "0.11.4"
+hex = "0.4.3"
+regex = "1.5.5"
+roxmltree = "0.14.1"
+serde = { version = "1.0.130", features = ["derive", "rc"] }
+serde_yaml = "0.8"
+sha3 = "0.9.1"
+
+conserts-elements = { path = "../conserts-elements" }
+conserts-error = { path = "../conserts-error" }
+
+[dev-dependencies]
+pretty_assertions = "1.0.0"

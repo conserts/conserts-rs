@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ASCII"?>
+<allInOne:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allInOne="allInOnePkg" xsi:schemaLocation="allInOnePkg ../metamodel/allInOneMetaModel.ecore" globalId="42" name="TBA" description="">
+  <configurations name="configuration" description="" configurationRanking="1">
+    <conSert name="consert" description="">
+        {% for guarantee in self.guarantees -%}
+        <guarantees name="{{ guarantee.name }}" description="">
+            <safetyProperties name="" description="">
+                <refinement name="{{ guarantee.description }}" description=""/>
+            </safetyProperties>
+        </guarantees>
+        {% endfor %}
+        {%- for evidence in self.evidence -%}
+        <runtimeEvidence name="{{ evidence.name }}" description="{{ evidence.description }}"/>
+        {% endfor %}
+        {%- for gp in self.guarantee_propagations -%}
+        <guaranteePropagations sourceElement="//@configurations.0/@conSert/{{ gp.source }}" targetElement="//@configurations.0/@conSert/{{ gp.target }}"/>
+        {% endfor %}
+        {%- for gate in self.gates -%}
+        <gates name="{{ gate.function }}_{{ gate.index }}" gateType="{{ gate.function }}"/>
+        {%- endfor %}
+    </conSert>
+  </configurations>
+</allInOne:System>

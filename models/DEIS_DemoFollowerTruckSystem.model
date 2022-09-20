@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ASCII"?>
+<!--
+SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+
+SPDX-License-Identifier: MIT
+-->
+<allInOne:System xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:allInOne="allInOnePkg" xsi:schemaLocation="allInOnePkg ../metamodel/allInOneMetaModel.ecore" globalId="1" name="FollowerTruck" description="">
+  <configurations globalId="2" name="FollowerTruck_Config_CACC" description="" configurationRanking="1">
+    <conSert globalId="3" name="FollowerLeaderTruck_ConSert_CACC" description="">
+      <guarantees globalId="4" name="SG1" description="">
+        <integrityLevel globalId="5" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="6" name="" description="">
+          <refinement globalId="7" name="High quality Safe Truck distance is not violated during Platooning.&#xD;&#xA;" description=""/>
+          <safetyPropertyType globalId="8" name="Omission" description=""/>
+          <integrityLevel globalId="9" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="10" name="SG2" description="">
+        <integrityLevel globalId="11" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="12" name="" description="">
+          <refinement globalId="13" name="Medium Quality Safe Truck distance is not violated during Platooning." description=""/>
+          <safetyPropertyType globalId="14" name="Omission" description=""/>
+          <integrityLevel globalId="15" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <guarantees globalId="16" name="SG3" description="">
+        <integrityLevel globalId="17" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="18" name="" description="">
+          <refinement globalId="19" name="No safe Platooning possible" description=""/>
+          <safetyPropertyType globalId="20" name="Omission" description=""/>
+          <integrityLevel globalId="21" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </guarantees>
+      <demands globalId="22" name="SD1" description="">
+        <integrityLevel globalId="23" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="24" name="" description="">
+          <refinement globalId="25" name="Speed Deviation is bound to &lt;= 2 km/h" description=""/>
+          <safetyPropertyType globalId="26" name="TooHigh" description=""/>
+          <integrityLevel globalId="27" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </demands>
+      <demands globalId="28" name="SD2" description="">
+        <integrityLevel globalId="29" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        <safetyProperties globalId="30" name="" description="">
+          <refinement globalId="31" name="Speed Deviation is bound to &lt;= 4 km/h" description=""/>
+          <safetyPropertyType globalId="32" name="TooHigh" description=""/>
+          <integrityLevel globalId="33" name="" description="" asilLevel="ASIL_D" integrityType="ASIL"/>
+        </safetyProperties>
+      </demands>
+      <runtimeEvidence globalId="34" name="RtE1" description="Communication Delay bound to &lt; 300 ms"/>
+      <runtimeEvidence globalId="35" name="RtE2" description="Follower Speed Determination healthy"/>
+      <runtimeEvidence globalId="35" name="RtE3" description="Distance bound to &lt;= 50 m"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.0" targetElement="//@configurations.0/@conSert/@guarantees.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.0" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.1" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.2" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@demands.0" targetElement="//@configurations.0/@conSert/@gates.0"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@gates.1" targetElement="//@configurations.0/@conSert/@guarantees.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.0" targetElement="//@configurations.0/@conSert/@gates.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@runtimeEvidence.1" targetElement="//@configurations.0/@conSert/@gates.1"/>
+      <guaranteePropagations sourceElement="//@configurations.0/@conSert/@demands.1" targetElement="//@configurations.0/@conSert/@gates.1"/>
+      <gates globalId="36" name="And_1" description="" gateType="AND"/>
+      <gates globalId="37" name="And_2" description="" gateType="AND"/>
+    </conSert>
+    <providedServices globalId="38" name="Safe Truck Platooning" description="" guarantees="//@configurations.0/@conSert/@guarantees.0 //@configurations.0/@conSert/@guarantees.1 //@configurations.0/@conSert/@guarantees.2" allocatedRequiredService="//@configurations.0/@requiredServices.0" isApplicationService="true">
+      <functionalServiceType globalId="39" name="AutomatedFollowingMode" description=""/>
+    </providedServices>
+    <requiredServices globalId="40" name="Leader Speed Provision" description="" demands="//@configurations.0/@conSert/@demands.0 //@configurations.0/@conSert/@demands.1">
+      <functionalServiceType globalId="41" name="SpeedProvision" description=""/>
+    </requiredServices>
+  </configurations>
+</allInOne:System>

@@ -1,0 +1,16 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: conserts-rs
+Upstream-Contact: Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>
+Source: https://github.com/conserts/conserts-rs
+
+Files: tests/resources/*
+Copyright: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+License: MIT
+
+Files: conserts-compile/templates/*
+Copyright: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+License: MIT
+
+Files: conserts-parse/templates/*
+Copyright: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+License: MIT

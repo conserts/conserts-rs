@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2022 Fraunhofer Institute for Experimental Software Engineering IESE
+#
+# SPDX-License-Identifier: MIT
+
+[package]
+name = "conserts-plot"
+version = "0.1.6"
+authors = ["Andreas Schmidt <andreas.schmidt@iese.fraunhofer.de>"]
+edition = "2018"
+
+[lib]
+path = "src/plot.rs"
+
+[dependencies]
+dot = "0.1.4"
+conserts-elements = { path = "../conserts-elements" }
+conserts-error = { path = "../conserts-error" }
+
+[dev-dependencies]
+pretty_assertions = "1.0.0"
